@@ -1,0 +1,49 @@
+interface Dept {
+  _id: string;
+  deptName: string;
+  description?: string;
+  manager?: UserRef;
+  status: string;
+  employees: UserRef[];
+}
+
+
+interface NewLog {
+  _id: string;
+  employee:UserRef
+  logDate: string;
+  checkInAt: string;
+  checkOutAt: string;
+  status: string;
+  role: string;
+  verifyType: 'CARD';
+}
+
+
+interface Shift {
+  _id: string;
+  dep: string;
+  startAt: string;
+  endAt: string;
+  shiftName: string;
+}
+
+interface User {
+  _id: string;
+  userId: string;
+  firstname: string;
+  lastname: string;
+  avatar: string;
+  gender: string;
+  blood: string;
+  religion: string;
+  role: string;
+  phone: string;
+}
+
+
+interface Device {
+  deviceName: string;
+  deviceIp: string;
+  devicePort: string;
+}
