@@ -8,7 +8,7 @@ interface ConnectOptions {
 
 export const connectSocket = ({ userId }: ConnectOptions) => {
   if (!socket) {
-    socket = io('http://localhost:3002', {
+    socket = io('https://zktimey-oley.onrender.com', {
       transports: ['websocket'],
       query: {
         userId,
