@@ -8,6 +8,7 @@ const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_SERVER_URL || "https://attendify-server-10.onrender.com",
+  credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
 
     
@@ -21,7 +22,6 @@ const baseQuery = fetchBaseQuery({
 
     return headers;
   },
-  credentials: 'include',
 });
 
 // Define the baseQueryWithReauth function with types
