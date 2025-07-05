@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: zktimey
+    env: node
+    buildCommand: npm install --force && npm run build
+    startCommand: npm run start
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
