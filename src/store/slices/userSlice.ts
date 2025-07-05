@@ -8,9 +8,9 @@ export interface User {
   gender: string;
   blood: string;
   religion: string;
-  dep: string;
+  dept: string;
   card: string;
-  role: string;
+  roles: string[];
   phone: string;
   userId: string;
 }
@@ -27,19 +27,20 @@ const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers: (state, action: PayloadAction<User[]>) => {
+    setUsers: (state, action: PayloadAction<any[]>) => {
+      console.log('action.payload', action.payload);
       state.data = action.payload;
     },
     addUser: (state, action: PayloadAction<User>) => {
       state.data.push(action.payload);
     },
-    updateUser: (state, action: PayloadAction<User>) => {
+    updateAUser: (state, action: PayloadAction<User>) => {
       const index = state.data.findIndex(u => u._id === action.payload._id);
       if (index !== -1) {
         state.data[index] = action.payload;
       }
     },
-    deleteUser: (state, action: PayloadAction<string>) => {
+    deleteAUser: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(user => user._id !== action.payload);
     },
     deleteMultipleUsers: (state, action: PayloadAction<string[]>) => {
@@ -48,6 +49,12 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUsers, addUser, updateUser, deleteUser, deleteMultipleUsers } = userSlice.actions;
+export const {
+  setUsers,
+  addUser,
+  updateAUser,
+  deleteAUser,
+  deleteMultipleUsers,
+} = userSlice.actions;
 
 export default userSlice.reducer;

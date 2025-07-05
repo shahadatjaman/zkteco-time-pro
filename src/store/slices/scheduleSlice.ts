@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface Schedule {
-  _id: string;
-  dep: string;
-  shiftName: string;
-  startAt: string;
-  endAt: string;
-  days: string[];
-}
+import { Schedule } from '../services/scheduleApi';
 
 interface ScheduleState {
   data: Schedule[];
@@ -30,12 +22,11 @@ const scheduleSlice = createSlice({
         state.data[index] = action.payload;
       }
     },
-    deleteSchedule: (state, action: PayloadAction<string>) => {
+    deleteASchedule: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(item => item._id !== action.payload);
     },
-    deleteMultipleSchedules: (state, action: PayloadAction<string[]>) => {
-      console.log('action.payload', action.payload);
-      state.data = state.data.filter(item => !action.payload.includes(item._id));
+    deleteManySchedules: (state, action: PayloadAction<string[]>) => {
+      state.data = state.data.filter(item => !action.payload.includes(item._id)) || [];
     },
     setSchedules: (state, action: PayloadAction<Schedule[]>) => {
       state.data = action.payload;
@@ -46,8 +37,8 @@ const scheduleSlice = createSlice({
 export const {
   addSchedule,
   updateSchedule,
-  deleteSchedule,
-  deleteMultipleSchedules,
+  deleteASchedule,
+  deleteManySchedules,
   setSchedules,
 } = scheduleSlice.actions;
 

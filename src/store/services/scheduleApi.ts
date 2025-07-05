@@ -1,53 +1,61 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { apiSlice } from '../api/apiSlice';
+
+export interface Dep {
+  _id: string;
+  deptName: string;
+  status: string;
+}
 
 export interface Schedule {
   _id: string;
-  dep: string;
+  dept: Dep;
   shiftName: string;
   startAt: string;
   endAt: string;
   days: string[];
+  employees: string[];
 }
 
-export const scheduleApi = createApi({
-  reducerPath: 'scheduleApi',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }), // Adjust base URL
-  tagTypes: ['Schedule'],
+export interface Res {
+  data: Schedule[];
+  status: number;
+}
+
+export const scheduleApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getSchedules: builder.query<Schedule[], void>({
-      query: () => '/schedules',
-      providesTags: ['Schedule'],
+    getSchedules: builder.query<Res, void>({
+      query: () => '/shifts',
     }),
     createSchedule: builder.mutation<Schedule, Partial<Schedule>>({
       query: newSchedule => ({
-        url: '/schedules',
+        url: '/shifts',
         method: 'POST',
         body: newSchedule,
       }),
-      invalidatesTags: ['Schedule'],
     }),
-    updateSchedule: builder.mutation<Schedule, Schedule>({
-      query: schedule => ({
-        url: `/schedules/${schedule._id}`,
-        method: 'PUT',
-        body: schedule,
-      }),
-      invalidatesTags: ['Schedule'],
+    updateSchedule: builder.mutation({
+      query: schedule => {
+        console.log('schedule', schedule);
+        return {
+          url: `/shifts/${schedule.id}`,
+          method: 'PUT',
+          body: schedule,
+        };
+      },
     }),
-    deleteSchedule: builder.mutation<{ id: string }, string>({
+    deleteSchedule: builder.mutation<Res, string>({
       query: id => ({
-        url: `/schedules/${id}`,
+        url: `/shifts/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Schedule'],
     }),
-    deleteMultipleSchedules: builder.mutation<void, string[]>({
+
+    deleteManySchedules: builder.mutation<void, string[]>({
       query: ids => ({
-        url: `/schedules/delete-many`,
-        method: 'POST',
+        url: `/shifts/bulk-delete`,
+        method: 'DELETE',
         body: { ids },
       }),
-      invalidatesTags: ['Schedule'],
     }),
   }),
 });
@@ -57,5 +65,5 @@ export const {
   useCreateScheduleMutation,
   useUpdateScheduleMutation,
   useDeleteScheduleMutation,
-  useDeleteMultipleSchedulesMutation,
+  useDeleteManySchedulesMutation,
 } = scheduleApi;

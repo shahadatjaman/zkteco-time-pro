@@ -27,7 +27,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/logs/create/Modal.jsx"
+    // "src/app/components/logs/create/Modal.jsx",
+    "src/utils/decodeToken.js",
+    "src/lib/socket.ts"
+
+    // "src/app/components/settings/PrivacySettings/index.isx
   ],
   "exclude": ["node_modules"]
 }

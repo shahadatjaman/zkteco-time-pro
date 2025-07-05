@@ -5,22 +5,32 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "lint": "npm install -D prettier && npm install -D babel-eslint && npx install-peerdeps --dev eslint-config-airbnb && npm install -D eslint-config-prettier eslint-plugin-prettier"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.2.0",
     "@reduxjs/toolkit": "^2.7.0",
+    "async-mutex": "^0.5.0",
     "date-fns": "^4.1.0",
     "formik": "^2.4.6",
     "framer-motion": "^12.12.2",
+    "jwt-decode": "^4.0.0",
     "lint": "^0.8.19",
     "next": "15.3.1",
     "react": "^19.0.0",
+    "react-big-calendar": "^1.19.4",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-redux": "^9.2.0",
+    "react-toastify": "^11.0.5",
     "react-virtual": "^2.10.4",
+    "socket.io-client": "^4.8.1",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
@@ -28,6 +38,7 @@
     "@types/lodash": "^4.17.17",
     "@types/node": "^20",
     "@types/react": "^19",
+    "@types/react-big-calendar": "^1.16.2",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
     "typescript": "^5"
