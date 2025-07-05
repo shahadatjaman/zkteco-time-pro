@@ -45,7 +45,7 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = memo(({ status }) => {
     reconnecting: { color: 'bg-yellow-500', icon: BiLoaderAlt },
   };
 
-  const Icon = statusConfig[status].icon;
+  const Icon = statusConfig[status]?.icon;
 
   return (
     <div className="flex items-center gap-2">

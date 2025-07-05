@@ -8,7 +8,13 @@ import RecentLogs from '@/app/components/dashboard/RecentLogs';
 import SummaryCards from '@/app/components/dashboard/SummaryCards';
 
 import { Employee, Holiday, Log } from '@/app/components/dashboard/types';
+import Head from 'next/head';
 import React from 'react';
+
+export const metadata = {
+  title: 'Dashboard | ZKTimey',
+  description: 'Overview of attendance, devices, logs, and holidays in your organization.',
+};
 
 const AttendanceDashboard: React.FC = () => {
   const holidays: Holiday[] = [
@@ -18,26 +24,28 @@ const AttendanceDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="p-4 md:p-8 custom-scrollbar">
-      <div className="">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <SummaryCards />
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <Device />
+    <>
+      <div className="p-4 md:p-8 custom-scrollbar">
+        <div className="">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <SummaryCards />
           </div>
 
-          <div className="space-y-6">
-            {/* <RealTimeClock /> */}
-            <RecentLogs />
-            <HolidayCalendar holidays={holidays} />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <Device />
+            </div>
+
+            <div className="space-y-6">
+              {/* <RealTimeClock /> */}
+              <RecentLogs />
+              <HolidayCalendar holidays={holidays} />
+            </div>
           </div>
+          <MongoDBDashboard />
         </div>
-        <MongoDBDashboard />
       </div>
-    </div>
+    </>
   );
 };
 

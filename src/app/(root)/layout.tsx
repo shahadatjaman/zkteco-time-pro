@@ -6,6 +6,7 @@ import "../globals.css";
 import Layout from "@/app/components/layout/Layout";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { Suspense } from "react";
+import AuthGuard from "../AuthGuard";
 
 
 
@@ -40,7 +41,10 @@ export default function RootLayout({
         <ReduxProvider>
         <Layout>
           <Suspense fallback={null}>
+            <AuthGuard>
           {children}
+
+            </AuthGuard>
 
           </Suspense>
         </Layout>

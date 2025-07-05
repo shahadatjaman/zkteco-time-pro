@@ -91,7 +91,7 @@ const DatabaseOverview = () => {
   const statistics = [
     { title: 'Average Document Size', value: stats.avgObjSize, icon: FiFileText },
     { title: 'Data Size', value: stats.dataSize, icon: FiHardDrive },
-    { title: 'Storage Size', value: stats.storageSize, icon: FiArchive },
+    { title: 'Storage Used', value: stats.storageSize, icon: FiArchive },
 
     { title: 'Total Size', value: stats.totalSize, icon: FiHardDrive },
     { title: 'File System Used', value: stats.fsUsedSize, icon: FiCpu },
@@ -105,8 +105,6 @@ const DatabaseOverview = () => {
       </div>
     );
   }
-
-  console.log('databseStats', databseStats);
 
   return (
     <div className="animate-fadeIn dark:bg-gray-800 p-6 mt-6">

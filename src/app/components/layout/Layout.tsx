@@ -17,7 +17,6 @@ import { useSocket } from '@/hooks/useSocket';
 import { useLogoutMutation } from '@/store/services/authApi';
 import { useRouter } from 'next/navigation';
 import { addLiveLog, addLog, AttendanceLog } from '@/store/slices/logSlice';
-import { setDeviceInfo } from '@/store/slices/deviceSlice';
 
 interface ILayout {
   children: React.ReactNode;
@@ -43,12 +42,13 @@ const Layout: FC<ILayout> = ({ children }) => {
       const user: any = decodeToken(token);
 
       dispatch(setCredentials({ user: user, accessToken: token }));
+    } else {
+      router.push('/login'); // 🔁 Redirect to login if no token
     }
   }, []);
 
   useEffect(() => {
     try {
-      console.log('socket', socket);
       if (socket) {
         socket.on('live_logs', (data: AttendanceLog) => {
           dispatch(addLiveLog(data));
@@ -75,16 +75,16 @@ const Layout: FC<ILayout> = ({ children }) => {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen dark bg-gray-900}`}>
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 lg:hidden"
           onClick={toggleMobileMenu}
         />
       )}
 
       <aside
-        className={`fixed top-0 left-0 h-full bg-white dark:bg-gray-800 shadow-lg transform transition-all duration-300 ease-in-out z-50
+        className={`fixed top-0 left-0 h-full  dark:bg-gray-800 shadow-lg transform transition-all duration-300 ease-in-out z-50
   ${isSidebarExpanded ? 'w-64' : 'w-20'}
   ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
       >
@@ -140,7 +140,10 @@ const Layout: FC<ILayout> = ({ children }) => {
       </aside>
 
       <div className={`flex flex-col min-h-screen ${isSidebarExpanded ? 'lg:ml-64' : 'lg:ml-20'}`}>
-        <header className="h-16 bg-white dark:bg-gray-800 shadow-sm fixed top-0 right-0 left-0 z-30 lg:left-64">
+        <header
+          className={`h-16  dark:bg-gray-800 shadow-sm fixed top-0 right-0 left-0 z-30 ${isSidebarExpanded &&
+            'lg:left-64'}`}
+        >
           <div className="flex items-center justify-between h-full px-4">
             <div className="flex items-center space-x-4">
               <button
@@ -175,7 +178,7 @@ const Layout: FC<ILayout> = ({ children }) => {
           </div>
         </header>
 
-        <main className="flex-1 lg:p-6 mt-16 bg-gray-50 dark:bg-gray-900">
+        <main className="flex-1 lg:p-6 bg-gray-50 dark:bg-gray-900">
           <div className="w-full mx-auto">{children}</div>
         </main>
       </div>
