@@ -1,12 +1,8 @@
 import MongoDBDashboard from '@/app/components/dashboard/DatabaseOverview';
 import Device from '@/app/components/dashboard/Device';
-
 import HolidayCalendar from '@/app/components/dashboard/HolidayCalendar';
-
 import RecentLogs from '@/app/components/dashboard/RecentLogs';
-
 import SummaryCards from '@/app/components/dashboard/SummaryCards';
-
 import { Employee, Holiday, Log } from '@/app/components/dashboard/types';
 import Head from 'next/head';
 import React from 'react';
@@ -16,7 +12,7 @@ export const metadata = {
   description: 'Overview of attendance, devices, logs, and holidays in your organization.',
 };
 
-const AttendanceDashboard: React.FC = () => {
+const AttendanceDashboard = () => {
   const holidays: Holiday[] = [
     { date: '2024-01-01', name: "New Year's Day" },
     { date: '2024-01-15', name: 'Martin Luther King Jr. Day' },
@@ -25,6 +21,11 @@ const AttendanceDashboard: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </Head>
+
       <div className="p-4 md:p-8 custom-scrollbar">
         <div className="">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">

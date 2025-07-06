@@ -6,7 +6,8 @@ import ReduxProvider from "@/providers/ReduxProvider";
 
 import "../globals.css";
 import { Suspense } from "react";
-import AuthGuard from "../AuthGuard";
+import AuthProvider from "../AuthGuard";
+
 
 
 const geistSans = Geist({
@@ -37,12 +38,18 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <Suspense fallback={null}>
-            <AuthGuard>
-             {children}
-            </AuthGuard>
+            
+            <AuthProvider>
+          {children}
+
+            </AuthProvider>
+        
+         
+           
           </Suspense>
         </ReduxProvider>
       </body>
     </html>
   );
 }
+

@@ -7,6 +7,7 @@ const LoadingPage = ({
   theme = 'dark', // "light" | "dark"
   variant = 'fullscreen', // "fullscreen" | "overlay" | "inline"
   additionalClasses = '',
+  isAuthLoading = false,
 }) => {
   const logoUrl = 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9';
 
@@ -24,14 +25,14 @@ const LoadingPage = ({
   const isDark = theme === 'dark';
 
   const containerClasses = `
-    flex flex-col items-center justify-center mt-[-74px]
+    flex flex-col items-center justify-center ${!isAuthLoading ? 'mt-[-74px]' : ''}
     ${getVariantClasses()}
     ${isDark ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'}
     ${additionalClasses}
   `;
 
   return (
-    <div className={containerClasses} role="status" aria-label="Loading content">
+    <div className={containerClasses} w-f role="status" aria-label="Loading content">
       <div className="flex flex-col items-center space-y-6">
         {logo ? (
           <img

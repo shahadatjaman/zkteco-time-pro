@@ -46,7 +46,6 @@ const HeaderButtons: FC<IHeaderButtons> = ({
   const deleteMany = async () => {
     const response: any = await deleteMultipleDepartments([...selectedItems]);
 
-    console.log('response', response);
     if (response && response?.data.status === 200) {
       dispatch(deleteManyDepartments([...selectedItems]));
       onDisSelect();

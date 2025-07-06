@@ -1,33 +1,57 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useDispatch } from 'react-redux';
 import { setCredentials } from '@/store/slices/authSlice';
 import { decodeToken } from '@/utils/decodeToken';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import LoadingPage from '@/shared/Loading/Loading';
 
 const PUBLIC_PATHS = ['/login', '/register', '/forgot-password'];
 
-export default function AuthGuard({ children }: { children: React.ReactNode }) {
-  const router: any = useRouter();
+export default function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [checked, setChecked] = useState(false);
+  const router = useRouter();
   const pathname = usePathname();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
+    const isPublic = PUBLIC_PATHS.includes(pathname);
 
-    if (token) {
-      const user: any = decodeToken(token);
-      dispatch(setCredentials({ user: user, accessToken: token }));
-      router.push(pathname);
-    } else {
-      if (!PUBLIC_PATHS.includes(pathname)) {
-        router.push('/login');
+    if (!token) {
+      if (isPublic) {
+        setChecked(true);
+        router.push(pathname);
+      } else {
+        setTimeout(() => {
+          setChecked(true);
+          router.push('/login');
+          return;
+        }, 2000);
       }
+      return;
+    }
+
+    try {
+      const user: any = decodeToken(token);
+
+      dispatch(setCredentials({ user, accessToken: token }));
+
+      if (!isPublic) {
+        setChecked(true);
+
+        router.push(pathname);
+      } else {
+        setChecked(true);
+
+        router.push('/');
+      }
+    } catch (e) {
+      localStorage.removeItem('accessToken');
+      router.push('/login');
     }
   }, [pathname]);
 
-  return <>{children}</>;
+  return checked ? <>{children}</> : <LoadingPage isAuthLoading={true} />;
 }

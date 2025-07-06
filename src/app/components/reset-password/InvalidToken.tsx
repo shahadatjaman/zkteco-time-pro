@@ -34,7 +34,6 @@ const PasswordResetVerification: React.FC = () => {
     if (tokenParam) {
       setToken(tokenParam);
       tokenHandler(tokenParam);
-      console.log('Token from URL:', tokenParam);
     }
   }, [searchParams]);
 

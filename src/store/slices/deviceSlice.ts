@@ -59,7 +59,6 @@ const deviceSlice = createSlice({
     },
 
     setDeviceInfo: (state, action) => {
-      console.log('action.payload', action.payload);
       state.deviceInfo = action.payload;
     },
 

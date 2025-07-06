@@ -7,7 +7,7 @@ import type { RootState } from '../store'; // Adjust the import based on your ac
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_SERVER_URL || "https://zktimey-oley.onrender.com/",
+  baseUrl: process.env.REACT_APP_SERVER_URL || "http://localhost:3002",
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
 
@@ -18,7 +18,7 @@ const baseQuery = fetchBaseQuery({
     
        let token =   localStorage.getItem('accessToken');
 
-       console.log('token', token)
+  
    
     if (token) {
         token = token.replace(/"/g, '');

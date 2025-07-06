@@ -17,11 +17,9 @@ const deptSlice = createSlice({
       state.data = action.payload;
     },
     addDepartment: (state, action: PayloadAction<Department>) => {
-      console.log('action.payload', action.payload);
       state.data.push(action.payload);
     },
     updateADepartment: (state, action: PayloadAction<Department>) => {
-      console.log('action.payload', action.payload);
       const index = state.data.findIndex(d => d._id === action.payload._id);
       if (index !== -1) {
         state.data[index] = action.payload;

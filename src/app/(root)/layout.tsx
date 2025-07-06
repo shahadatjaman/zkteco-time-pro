@@ -7,6 +7,7 @@ import Layout from "@/app/components/layout/Layout";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { Suspense } from "react";
 import AuthGuard from "../AuthGuard";
+import AuthProvider from "../AuthGuard";
 
 
 
@@ -39,15 +40,17 @@ export default function RootLayout({
       >
        
         <ReduxProvider>
+         <AuthProvider>
+
         <Layout>
           <Suspense fallback={null}>
-            <AuthGuard>
+         
           {children}
-
-            </AuthGuard>
 
           </Suspense>
         </Layout>
+         </AuthProvider>
+
         {/* {children} */}
       
         </ReduxProvider>
@@ -57,3 +60,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+

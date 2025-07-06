@@ -19,12 +19,11 @@ export const socketMiddleware: Middleware = store => {
 
   socket.on('device-info', (deviceData: any) => {
     // handle deviceData in your UI
-    console.log('device-info', deviceData);
+
     store.dispatch(setDeviceInfo(deviceData));
   });
 
   socket.on('device-time', (time: any) => {
-    console.log('time', time);
     store.dispatch(setDeviceTime(time));
   });
 

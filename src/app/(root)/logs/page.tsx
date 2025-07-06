@@ -1,8 +1,8 @@
 import React from 'react';
 import CombinePage from './combinePage';
 
-const page = () => {
+const Login = () => {
   return <CombinePage />;
 };
 
-export default page;
+export default Login;
