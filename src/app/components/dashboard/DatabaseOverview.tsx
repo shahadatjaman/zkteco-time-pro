@@ -93,9 +93,9 @@ const DatabaseOverview = () => {
     { title: 'Data Size', value: stats.dataSize, icon: FiHardDrive },
     { title: 'Storage Used', value: stats.storageSize, icon: FiArchive },
 
-    { title: 'Total Size', value: stats.totalSize, icon: FiHardDrive },
-    { title: 'File System Used', value: stats.fsUsedSize, icon: FiCpu },
-    { title: 'File System Total', value: stats.fsTotalSize, icon: FiCpu },
+    // { title: 'Total Size', value: stats.totalSize, icon: FiHardDrive },
+    // { title: 'File System Used', value: stats.fsUsedSize, icon: FiCpu },
+    // { title: 'File System Total', value: stats.fsTotalSize, icon: FiCpu },
   ];
 
   if (loading) {

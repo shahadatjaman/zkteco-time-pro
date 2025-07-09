@@ -27,7 +27,7 @@ export const attendanceLogApi = apiSlice.injectEndpoints({
 
     createAttendanceLog: builder.mutation<AttendanceLog, Partial<AttendanceLog>>({
       query: newLog => ({
-        url: '/attendance-logs',
+        url: '/logs',
         method: 'POST',
         body: newLog,
       }),

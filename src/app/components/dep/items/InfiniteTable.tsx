@@ -19,13 +19,14 @@ import { useDeleteDepartmentMutation, useGetDepartmentsQuery } from '@/store/ser
 import { deleteADepartment, setDepartments } from '@/store/slices/deptSlice';
 import ConfirmationDialog from '@/shared/ConfirmationDialog';
 import UpdateDeptModal from '../create/UpdateDeptModal';
+import { User } from '@/store/slices/userSlice';
 
 export interface Department {
   _id: string;
   deptName: string;
   description?: string;
   status?: string;
-  manager?: string; // Manager's user ID
+  manager?: User[] | any; // Manager's user ID
   employees?: string[]; // List of employee user IDs
 }
 

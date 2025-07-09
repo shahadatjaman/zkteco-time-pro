@@ -32,7 +32,7 @@ const LoadingPage = ({
   `;
 
   return (
-    <div className={containerClasses} w-f role="status" aria-label="Loading content">
+    <div className={containerClasses} role="status" aria-label="Loading content">
       <div className="flex flex-col items-center space-y-6">
         {logo ? (
           <img

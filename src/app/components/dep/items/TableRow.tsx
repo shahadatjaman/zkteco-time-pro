@@ -3,6 +3,7 @@
 import { memo } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Department } from './InfiniteTable';
+import { Avatar } from '@/shared/avatar';
 
 interface Employees {
   firstname: string;
@@ -24,6 +25,7 @@ const TableRow: React.FC<TableRowProps> = memo(
     const deleteHandler = (data: Department) => {
       onSelectDelItem(data);
     };
+    console.log('data', data.manager);
     return (
       <tr className="transition-all duration-200 hover:bg-gray-700">
         <td className="p-4">
@@ -35,8 +37,23 @@ const TableRow: React.FC<TableRowProps> = memo(
           />
         </td>
         <td className="p-4 text-left">{data.deptName}</td>
-        <td className="p-4 text-left">{data.description || '-'}</td>
-        <td className="p-4 text-left">{data.manager || '-'}</td>
+        <td className="p-4 text-left">{data.description || 'empty'}</td>
+        <td className="p-4 text-left">
+          {/* {data.manager ? (
+            <Avatar name={data.manager.firstname} src={data.manager?.avatar} size="md" />
+          ) : (
+            'Empty'
+          )} */}
+
+          {data?.manager ? (
+            <div className="flex items-center gap-3">
+              <Avatar name={data.manager.firstname} src={data.manager?.avatar} size="sm" />
+              <span>{`${data.manager.firstname} ${data.manager.lastname}`}</span>
+            </div>
+          ) : (
+            'empty'
+          )}
+        </td>
         <td className="p-4 text-left">{data?.status}</td>
         <td className="p-4 text-left">
           {data?.employees && data?.employees?.length > 0

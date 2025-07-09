@@ -675,7 +675,7 @@ const LogsTable: React.FC = () => {
                 }`}
               >
                 <div
-                  className={`animate-spin rounded-full h-10 w-10 border-b-2 mx-auto ${
+                  className={` rounded-full h-10 w-10 border-b-2 mx-auto ${
                     isDark ? 'border-blue-400' : 'border-blue-600'
                   }`}
                 ></div>
@@ -692,7 +692,6 @@ const LogsTable: React.FC = () => {
               {visibleItems < allData.length && (
                 <motion.button
                   animate={{ rotate: true ? 360 : 0 }}
-                  transition={{ duration: 1, repeat: true ? Infinity : 0 }}
                   className="text-blue-600 dark:text-blue-400"
                 >
                   <FiRefreshCw className="inline-block" /> Loading more...

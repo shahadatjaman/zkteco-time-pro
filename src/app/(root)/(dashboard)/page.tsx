@@ -40,7 +40,7 @@ const AttendanceDashboard = () => {
             <div className="space-y-6">
               {/* <RealTimeClock /> */}
               <RecentLogs />
-              <HolidayCalendar holidays={holidays} />
+              {/* <HolidayCalendar holidays={holidays} /> */}
             </div>
           </div>
           <MongoDBDashboard />

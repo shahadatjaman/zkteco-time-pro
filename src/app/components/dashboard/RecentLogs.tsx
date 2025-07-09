@@ -44,7 +44,7 @@ const RecentLogs = () => {
       </h2>
       <div
         ref={containerRef}
-        className="space-y-3 max-h-[300px] overflow-y-auto scrollbar-hide rounded"
+        className="space-y-3 max-h-[400px] overflow-y-auto scrollbar-hide rounded"
       >
         <AnimatePresence initial={false}>
           {liveLogs?.map(log => (

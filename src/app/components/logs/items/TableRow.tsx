@@ -6,6 +6,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Status } from './styles';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { Avatar } from '@/shared/avatar';
+import convertDateFormat from '@/utils';
 
 interface TableRowProps {
   data: AttendanceLog;
@@ -40,7 +41,7 @@ const TableRow: React.FC<TableRowProps> = memo(
 
           <span className="ml-4">{data.employee.firstname}</span>
         </td>
-        <td className="p-4">{data.logDate}</td>
+        <td className="p-4">{convertDateFormat(data.logDate)}</td>
         <td className="p-4">{data.checkInAt}</td>
         <td className="p-4">{data.checkOutAt}</td>
         <td className="p-4">
@@ -55,7 +56,7 @@ const TableRow: React.FC<TableRowProps> = memo(
           <Status status={data.status}>{data.status}</Status>
         </td>
         <td className="p-4">{data.employee.roles}</td>
-        <td className="p-4">{data.shiftId.shiftName}</td>
+        <td className="p-4">{data.shiftId?.shiftName}</td>
         <td className="p-4">
           <div className="flex space-x-2">
             <button
