@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import { addLiveLog, addLog, AttendanceLog } from '@/store/slices/logSlice';
 import AuthProvider from '@/app/AuthGuard';
 import { Avatar } from '@/shared/avatar';
+import Link from 'next/link';
 
 interface ILayout {
   children: React.ReactNode;
@@ -95,7 +96,9 @@ const Layout: FC<ILayout> = ({ children }) => {
           <div className="flex flex-col h-full">
             <div className="h-16 flex items-center justify-between px-4 border-b dark:border-gray-700">
               {isSidebarExpanded && (
-                <span className="text-xl font-semibold dark:text-white">ZKTimey</span>
+                <Link href={'/'}>
+                  <span className="text-xl font-semibold dark:text-white">ZKTimey</span>
+                </Link>
               )}
               <button
                 onClick={() => dispatch(toggleSidebar())}
