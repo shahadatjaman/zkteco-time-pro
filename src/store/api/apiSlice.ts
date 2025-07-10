@@ -7,7 +7,7 @@ import type { RootState } from '../store'; // Adjust the import based on your ac
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_SERVER_URL || "http://localhost:3002",
+  baseUrl: process.env.REACT_APP_SERVER_URL || "https://zktimey-demo.onrender.com",
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
 
