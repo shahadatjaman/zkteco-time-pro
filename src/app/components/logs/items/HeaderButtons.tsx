@@ -77,9 +77,9 @@ const HeaderButtons: FC<IHeaderButtons> = ({
         <FiRefreshCw className={`${isLoadingFetch ? 'animate-spin' : ''}`} />{' '}
         {isSmall ? '' : `Refresh`}
       </button>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-600">
+      {/* <button className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-600">
         <FiDownload /> Export CSV
-      </button>
+      </button> */}
       <TableSearch isDark={true} debouncedSearch={debouncedSearch} />
 
       <CreateLogModal isOpen={isOpenToCreate} onClose={onCloseToCreate} />

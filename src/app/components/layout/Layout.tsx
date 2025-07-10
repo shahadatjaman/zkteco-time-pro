@@ -169,17 +169,17 @@ const Layout: FC<ILayout> = ({ children }) => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                {/* <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                   <FiBell className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                </button>
-                <button
+                </button> */}
+                {/* <button
                   onClick={() => setIsDarkMode(!isDarkMode)}
                   className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <span className="text-sm font-medium dark:text-white">
                     {isDarkMode ? 'Light' : 'Dark'}
                   </span>
-                </button>
+                </button> */}
               </div>
             </div>
           </header>
